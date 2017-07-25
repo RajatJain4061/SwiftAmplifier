@@ -1,3 +1,6 @@
+<p align="center">
+  <img src="swift-amplifier-logo.png" title="SwiftAmplifier">
+</p>
 # SwiftAmplifier
 Amplify your swift programming with powerful extensions
 
