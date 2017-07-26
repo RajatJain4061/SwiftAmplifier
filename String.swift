@@ -4,9 +4,8 @@
 //
 //  Created by Rajat Jain on 15/06/17.
 //  Copyright © 2017 rajatjain4061. All rights reserved.
-//  Fork this repo on Github: https://github.com/rajatjain4061/SwiftAmplifier 
+//  Fork this repo on Github: https://github.com/rajatjain4061/SwiftAmplifier
 //
-
 
 import Foundation
 
@@ -56,12 +55,6 @@ extension String {
         
     }
     
-    static func className(_ aClass: AnyClass) -> String {
-        
-        return NSStringFromClass(aClass).components(separatedBy: ".").last!
-        
-    }
-    
     func substring(_ from: Int) -> String {
         
         return self.substring(from: self.characters.index(self.startIndex, offsetBy: from))
@@ -80,5 +73,34 @@ extension String {
     
     func replace(target: String, withString: String) -> String {
         return self.replacingOccurrences(of: target, with: withString)
+    }
+    
+    func toUpper() -> String {
+        return self.uppercased()
+    }
+    
+    func toLower() -> String {
+        return self.lowercased()
+    }
+    
+    /**
+    Generates a random string of given length
+     
+    - parameter length: (Int)
+    */
+    func random(length: Int) -> String {
+        
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let len = UInt32(letters.length)
+        
+        var randomString = ""
+        
+        for _ in 0 ..< length {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        
+        return randomString
     }
 }
