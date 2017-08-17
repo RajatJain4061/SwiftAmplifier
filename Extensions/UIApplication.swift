@@ -19,16 +19,17 @@ extension UIApplication {
             delegate.orientationLock = orientation
         
         }
-    
     }
     
     /**
-     Get documents directory path of application
-     example: UIApplication.documentDirectoryPath()
-     */
-    public static func documentDirectoryPath() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask)
-        let documentDirectory = paths.first
-        return documentDirectory!
+        Get documents directory path of application
+        example: UIApplication.documentDirectoryPath()
+    */
+    public static var documentDirectoryPath: URL {
+        get {
+            let paths = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask)
+            let documentDirectory = paths.first
+            return documentDirectory!
+        }
     }
 }
