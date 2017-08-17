@@ -27,5 +27,14 @@ extension Date {
         }
     }
     
+    /**
+     Returns timeIntervalSince1970
+     
+    */
+    static var timestamp:Int64 {
+        let date = Date()
+        return Int64(date.timeIntervalSince1970)
+    }
+    
 }
 
