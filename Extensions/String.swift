@@ -71,8 +71,9 @@ extension String {
         return NSLocalizedString(self, comment: "")
     }
     
-    func replace(target: String, withString: String) -> String {
-        return self.replacingOccurrences(of: target, with: withString)
+    func replace(target: String, withString: String) -> String
+    {
+        return self.replacingOccurrences(of: target, with: withString, options: NSString.CompareOptions.literal, range: nil)
     }
     
     func toUpper() -> String {
@@ -103,4 +104,20 @@ extension String {
         
         return randomString
     }
+    
+    /**
+      extracts file extension from a string
+     
+    */
+    func fileExtension() -> String? {
+        let stringUrl = NSURL(string: self)
+        
+        if let urlFileExtension = stringUrl?.pathExtension?.lowercased() {
+            return urlFileExtension
+        } else {
+            return nil
+        }
+    }
+    
+    
 }
