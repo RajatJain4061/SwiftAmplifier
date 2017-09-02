@@ -13,11 +13,22 @@ import UIKit
 
 extension UIImage {
     /**
-     Convert an UIview to an image
+     Convert an UIView into image
      
-    */
-    convenience init(_ view: UIView) {
-        UIGraphicsBeginImageContext(view.frame.size)
+     - parameter view: view to convert into image
+     - parameter highResolution: true for highResolution image
+     */
+    convenience init(view: UIView, highResolution:Bool = false) {
+        if highResolution == false {
+            UIGraphicsBeginImageContext(view.frame.size)
+        } else {
+            // Gradually increase the number for high resolution.
+            let scale:CGFloat = 1.0
+            
+            UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, scale)
+            
+        }
+        
         view.layer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -28,7 +39,7 @@ extension UIImage {
      fix image is rotated after uploading to server
      https://stackoverflow.com/questions/5427656/ios-uiimagepickercontroller-result-image-orientation-after-upload
      
-    */
+     */
     func fixOrientation() -> UIImage {
         if (self.imageOrientation == .up) {
             return self
